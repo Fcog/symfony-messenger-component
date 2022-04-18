@@ -29,6 +29,9 @@ RUN docker-php-ext-configure gd \
 
 RUN docker-php-ext-install gd
 
+RUN apt-get update && apt-get install -y librabbitmq-dev
+RUN pecl install amqp-1.10.2 && docker-php-ext-enable amqp
+
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash
